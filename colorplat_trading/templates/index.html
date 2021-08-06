@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ColorPlat Trading</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ 
+  <style>
+      .platcontainer{
+          display: flex;
+      }
+      .plat{
+          border: 1px solid black;
+          margin: auto;
+          min-width: 100px;
+          max-width: 100px;
+          padding: 10px;
+      }
+  </style>
+</head>
+<body>
+  
+<div class="container">
+  <div class="row">
+    <h2 align=center>ColorPlat Trading</h2>
+  </div>
+  <br> <br>
+  <div class="row platcontainer">
+    {% for plat in plats %}
+        <div class="plat">
+            {{ plat.name }}<br/>
+            {{ plat.currentprice }}<br/>
+            <div style="width:20px;height:20px;background-color: rgb({{plat.rvalue}}, {{plat.gvalue}}, {{plat.bvalue}});"></div>
+        </div>
+       
+        <hr/>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+    setInterval(function(){
+        console.log("new prices loaded");
+        $(".platcontainer").load("/showpriceshome");
+    },20000);
+</script>
+</body>
+</html>
